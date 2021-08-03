@@ -1,3 +1,4 @@
+![pokemon png](https://user-images.githubusercontent.com/67424137/128056439-0594f6c4-82f7-49dc-869a-093d593bf3ed.jpg)
 ![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)<br>
 ![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)<br>
 ![Kotlin](https://img.shields.io/badge/kotlin-%230095D5.svg?style=for-the-badge&logo=kotlin&logoColor=white)
@@ -14,3 +15,4 @@
 ## 🌏 Open API
 Pokedex using the [PokeAPI](https://pokeapi.co) for constructing RESTful API.
 PokeAPI provides a RESTful API interface to highly detailed objects built from thousands of lines of data related to Pokémon.
+
