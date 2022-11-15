@@ -1,44 +1,29 @@
 package com.example.pokeapp
 
-import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.ActionBar.DISPLAY_SHOW_CUSTOM
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var navController: NavController
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val navConHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        navController = navConHost.findNavController()
+        setupActionBarWithNavController(navController)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.BLACK))
 
-        val actionBar = supportActionBar
-        actionBar?.displayOptions = DISPLAY_SHOW_CUSTOM
-        actionBar?.setCustomView(R.layout.toolbar_skin)
-        actionBar?.setDisplayShowCustomEnabled(true)
-        actionBar?.show()
     }
 
-    fun toggleDarkMode(view: View) {
-        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
-            Configuration.UI_MODE_NIGHT_YES -> {
-                setLightMode()
-            }
-            else -> {
-                setDarkMode()
-            }
+    override fun onSupportNavigateUp() = navController.navigateUp() || super.onSupportNavigateUp()
 
-        }
-        overridePendingTransition(750, 750)
-    }
-
-    private fun setDarkMode() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-    }
-
-    private fun setLightMode() {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-    }
 }

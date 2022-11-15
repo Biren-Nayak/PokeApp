@@ -10,14 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
-        <item name="actionBarStyle">?attr/colorOnPrimary</item>
-        <item name="background">@color/black</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/black</item>
     </style>
-    <style name="lightDarkModeIcon">
-       <item name="android:tint">@color/blue</item>
-    <item name="android:src">@drawable/ic_outline_mode_night_24</item>
-        <item name="android:onClick">toggleDarkMode</item>
-    </style>
+
 </resources>

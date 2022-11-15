@@ -5,13 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokeapp.models.PokeResult
 import com.example.pokeapp.models.PokemonEntry
-import com.example.pokeapp.models.pokemonresponses.Pokemon
 import com.example.pokeapp.network.PokeAPIService
 import com.example.pokeapp.ui.viewmodels.LoadingStates.*
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 enum class  LoadingStates{LOADING, SUCCESS, ERROR }
 
@@ -34,7 +31,8 @@ class HomeViewModel: ViewModel() {
             val pokemonEntry = pokemonResults.mapIndexed { index, pokeResult ->
                 val id = pokeResult.url.dropLast(1).takeLastWhile { it.isDigit() }
                 val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
-                PokemonEntry(id.toInt(), pokeResult.name, url)
+                val type = PokeAPIService.pokeAPI.getPokemonType(id.toInt()).types[0].type.name
+                PokemonEntry(id.toInt(), pokeResult.name, url, type)
             }
             _pokemonList.value = pokemonEntry
             _loadingStates.value = SUCCESS

@@ -1,9 +1,10 @@
 package com.example.pokeapp.models.pokemonresponses
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
+
 
 data class Other(
     val dream_world: DreamWorld,
-    @Json(name = "official-artwork")
+    @SerializedName("official-artwork")
     val official_artwork: OfficialArtwork
 )

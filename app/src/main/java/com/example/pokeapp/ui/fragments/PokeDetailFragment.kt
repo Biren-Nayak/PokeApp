@@ -4,13 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.pokeapp.R
 import com.example.pokeapp.databinding.FragmentPokeDetailBinding
 import com.example.pokeapp.models.pokemonresponses.Pokemon
 import com.example.pokeapp.ui.viewmodels.PokeDetailViewModel
@@ -24,9 +20,8 @@ class PokeDetailFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPokeDetailBinding.inflate(layoutInflater, container, false)
-
 
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -35,12 +30,11 @@ class PokeDetailFragment: Fragment() {
 
         val viewModelFactory = PokeDetailViewModelFactory(id)
 
-        val viewModel = ViewModelProvider(
-            this,viewModelFactory).get(PokeDetailViewModel::class.java)
+        val viewModel = ViewModelProvider(this,viewModelFactory)[PokeDetailViewModel::class.java]
 
-        viewModel.pokemon.observe(viewLifecycleOwner , Observer { pokemon ->
+        viewModel.pokemon.observe(viewLifecycleOwner) { pokemon ->
             updateUI(pokemon)
-        })
+        }
 
 
         return binding.root
@@ -48,7 +42,7 @@ class PokeDetailFragment: Fragment() {
 
     private fun updateUI(pokemon: Pokemon) {
 
-        Glide.with(this,)
+        Glide.with(this)
             .load(pokemon.sprites.other.official_artwork.front_default)
             .into(binding.imgPokemon)
 

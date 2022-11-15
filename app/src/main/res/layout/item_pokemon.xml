@@ -8,54 +8,72 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/pokeListItem"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="15dp"
+        android:shadowColor="?attr/colorOnSecondary"
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        tools:targetApi="lollipop"
+        android:hapticFeedbackEnabled="true"
         android:clickable="true"
-        android:focusable="true"
-        android:hapticFeedbackEnabled="true">
+        android:focusable="true">
 
-        <TextView
-            android:id="@+id/tvPokemonName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@string/name"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toEndOf="@+id/pokeImage"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pokeListItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tvPokemonName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/name"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintHorizontal_bias="0.12"
+                app:layout_constraintStart_toEndOf="@+id/pokeImage"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+            <ImageView
             android:id="@+id/pokeImage"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="10dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:background="@drawable/circular_background"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:cropToPadding="true"
+            android:scaleType="centerCrop"
             android:contentDescription="@string/pokemon"
-            android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="?attr/colorOnSecondary"
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/circular_background"
+            android:contentDescription="@string/pokemon"
+            android:src="@drawable/pokeball_animation"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </layout>

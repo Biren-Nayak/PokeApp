@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#F96229</color>
     <color name="blue">#4797D3</color>
+    <color name="alice_blue">#F0F8FF</color>
     <color name="transparent">#00FFFFFF</color>
 </resources>

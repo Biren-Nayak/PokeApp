@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+    android:shape="rectangle">
 
     <gradient android:startColor="?attr/colorOnPrimary"
         android:centerColor="?attr/colorOnSecondary"
@@ -8,8 +8,7 @@
         android:angle="135" />
 
 
-    <size android:width="65dp"
-        android:height="65dp"/>
+    <corners android:radius="45dp"/>
 
     <stroke android:color="?attr/colorSecondary"
         android:width="2dp"/>
