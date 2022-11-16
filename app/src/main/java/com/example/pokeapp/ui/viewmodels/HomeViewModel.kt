@@ -1,51 +1,57 @@
 package com.example.pokeapp.ui.viewmodels
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokeapp.models.PokemonEntry
-import com.example.pokeapp.network.PokeAPIService
-import com.example.pokeapp.ui.viewmodels.LoadingStates.*
+import com.example.pokeapp.models.pokemonresponses.Pokemon
+import com.example.pokeapp.repository.PokeRepository
+import com.example.pokeapp.ui.viewmodels.HomeViewModel.LoadingStates.ERROR
+import com.example.pokeapp.ui.viewmodels.HomeViewModel.LoadingStates.SUCCESS
 import kotlinx.coroutines.launch
 
-enum class  LoadingStates{LOADING, SUCCESS, ERROR }
 
 class HomeViewModel: ViewModel() {
 
-    private val _loadingStates = MutableLiveData<LoadingStates>()
-    val loadingStates : LiveData<LoadingStates>
-    get() = _loadingStates
+    enum class  LoadingStates{LOADING, SUCCESS, ERROR }
+
+    private val repository = PokeRepository()
+
+    private val _fetchStatus = MutableLiveData<LoadingStates>()
+    val fetchStates : LiveData<LoadingStates>
+    get() = _fetchStatus
 
     private val _pokemonList = MutableLiveData<List<PokemonEntry>>()
     val pokemonList: LiveData<List<PokemonEntry>>
     get() = _pokemonList
 
+    private val _selectedPokemon = MutableLiveData<Pokemon>()
+    val selectedPokemon: LiveData<Pokemon>
+    get() = _selectedPokemon
 
 
-    private fun getPokemon () = viewModelScope.launch {
-        _loadingStates.value = LOADING
+    private fun getPokemon() = viewModelScope.launch {
+        _fetchStatus.value = LoadingStates.LOADING
         try{
-            val pokemonResults = PokeAPIService.pokeAPI.getPokemon().results
-            val pokemonEntry = pokemonResults.mapIndexed { index, pokeResult ->
-                val id = pokeResult.url.dropLast(1).takeLastWhile { it.isDigit() }
-                val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$id.png"
-                val type = PokeAPIService.pokeAPI.getPokemonType(id.toInt()).types[0].type.name
-                PokemonEntry(id.toInt(), pokeResult.name, url, type)
-            }
-            _pokemonList.value = pokemonEntry
-            _loadingStates.value = SUCCESS
+            _pokemonList.value = repository.fetchPokemonList()
+            _fetchStatus.value = SUCCESS
         }catch (e: Exception){
-            _loadingStates.value = ERROR
-            Log.d("HomeViewModel", e.message.toString())
+            _fetchStatus.value = ERROR
+            Log.d(TAG, e.message.toString())
         }
 
     }
 
-    init {
-        getPokemon()
+    fun onPokemonSelected(pokemon: PokemonEntry) = viewModelScope.launch{
+        _selectedPokemon.value = repository.getPokemonFromId(pokemon.id)
     }
+
+
+
+    init { getPokemon() }
 
 
 }

@@ -64,14 +64,14 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
-    //Gson
+    // Gson
     implementation "com.google.code.gson:gson:$gson_version"
+
+    // Pagination
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"
-
-    // Preference Manager
-    implementation "androidx.preference:preference-ktx:$preference_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
