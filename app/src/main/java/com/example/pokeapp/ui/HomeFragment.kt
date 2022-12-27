@@ -1,4 +1,4 @@
-package com.example.pokeapp.ui.fragments
+package com.example.pokeapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pokeapp.R
 import com.example.pokeapp.adapters.PokemonListAdapter
 import com.example.pokeapp.databinding.FragmentHomeBinding
-import com.example.pokeapp.ui.viewmodels.HomeViewModel
+import com.example.pokeapp.viewmodels.HomeViewModel
 
 class HomeFragment: Fragment() {
 
@@ -33,14 +33,18 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding.rvHome.apply {
-            adapter = PokemonListAdapter(
+
+            PokemonListAdapter(
                 PokemonListAdapter.PokemonListener { pokemon ->
                     viewModel.onPokemonSelected(pokemon)
                     findNavController().navigate(R.id.action_homeFragment_to_pokeDetailFragment)
                 }
-            )
-            layoutManager = LinearLayoutManager(context)
+            ).apply {
+                binding.rvHome.adapter = this
+                binding.rvHome.layoutManager = LinearLayoutManager(context)
+                viewModel.pokemonList.observe(viewLifecycleOwner){
+                    submitList(it)
+            }
         }
 
     }

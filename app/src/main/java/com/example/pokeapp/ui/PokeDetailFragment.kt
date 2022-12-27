@@ -1,4 +1,4 @@
-package com.example.pokeapp.ui.fragments
+package com.example.pokeapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.pokeapp.databinding.FragmentPokeDetailBinding
-import com.example.pokeapp.ui.viewmodels.HomeViewModel
+import com.example.pokeapp.viewmodels.HomeViewModel
 
 class PokeDetailFragment: Fragment() {
 

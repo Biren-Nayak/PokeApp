@@ -1,4 +1,4 @@
-package com.example.pokeapp.ui.viewmodels
+package com.example.pokeapp.viewmodels
 
 import android.content.ContentValues.TAG
 import android.util.Log
@@ -9,16 +9,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.pokeapp.models.PokemonEntry
 import com.example.pokeapp.models.pokemonresponses.Pokemon
 import com.example.pokeapp.repository.PokeRepository
-import com.example.pokeapp.ui.viewmodels.HomeViewModel.LoadingStates.ERROR
-import com.example.pokeapp.ui.viewmodels.HomeViewModel.LoadingStates.SUCCESS
+import com.example.pokeapp.viewmodels.HomeViewModel.LoadingStates.ERROR
+import com.example.pokeapp.viewmodels.HomeViewModel.LoadingStates.SUCCESS
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class HomeViewModel: ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val repository: PokeRepository): ViewModel() {
 
     enum class  LoadingStates{LOADING, SUCCESS, ERROR }
 
-    private val repository = PokeRepository()
 
     private val _fetchStatus = MutableLiveData<LoadingStates>()
     val fetchStates : LiveData<LoadingStates>
