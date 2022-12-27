@@ -4,7 +4,6 @@ object Constants {
     const val BASE_URL = "https://pokeapi.co/api/v2/"
     const val ALT_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
     const val POKEMON = "pokemon"
-    const val DATA = "data"
     const val FETCH_STATUS = "fetchStatus"
     const val IMG_URL = "img_url"
     const val ID = "id"

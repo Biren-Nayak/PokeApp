@@ -2,12 +2,11 @@ package com.example.pokeapp.repository
 
 import com.example.pokeapp.models.PokemonEntry
 import com.example.pokeapp.network.PokeAPI
-import com.example.pokeapp.network.PokeAPIService
 import com.example.pokeapp.util.Constants
+import javax.inject.Inject
 
-class PokeRepository{
+class PokeRepository @Inject constructor(private val api: PokeAPI){
 
-    private val api: PokeAPI = PokeAPIService.pokeAPI
 
     suspend fun getPokemonFromId(id: Int) = api.getPokemonDetail(id)
 

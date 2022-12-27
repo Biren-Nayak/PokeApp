@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".di.MyAppImpl"
         android:allowBackup="true"
         android:icon="@mipmap/ic_channel_foreground"
         android:label="@string/app_name"
@@ -11,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeApp">
 
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity android:name=".ui.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

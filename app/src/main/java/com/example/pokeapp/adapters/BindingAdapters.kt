@@ -3,21 +3,12 @@ package com.example.pokeapp.adapters
 import android.view.View.*
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pokeapp.R
-import com.example.pokeapp.models.PokemonEntry
-import com.example.pokeapp.ui.viewmodels.HomeViewModel
-import com.example.pokeapp.ui.viewmodels.HomeViewModel.LoadingStates.*
-import com.example.pokeapp.util.Constants.DATA
 import com.example.pokeapp.util.Constants.FETCH_STATUS
 import com.example.pokeapp.util.Constants.IMG_URL
-
-@BindingAdapter(DATA)
-fun bindData(recyclerView: RecyclerView, data: List<PokemonEntry>?){
-    val adapter = recyclerView.adapter as PokemonListAdapter
-    adapter.submitList(data)
-}
+import com.example.pokeapp.viewmodels.HomeViewModel
+import com.example.pokeapp.viewmodels.HomeViewModel.LoadingStates.*
 
 
 @BindingAdapter(IMG_URL)
