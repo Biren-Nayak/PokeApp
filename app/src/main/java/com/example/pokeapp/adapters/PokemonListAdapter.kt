@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.adapters.PokemonListAdapter.PokemonListViewHolder
 import com.example.pokeapp.databinding.ItemPokemonBinding
-import com.example.pokeapp.models.PokemonEntry
+import com.example.pokeapp.models.pokemonresponses.Pokemon
 
 
-class PokemonListAdapter(private val clickListener: PokemonListener) :ListAdapter<PokemonEntry, PokemonListViewHolder>(DiffCallBack) {
+class PokemonListAdapter(private val clickListener: PokemonListener) :ListAdapter<Pokemon, PokemonListViewHolder>(DiffCallBack) {
 
     class PokemonListViewHolder(private val binding: ItemPokemonBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(clickListener: PokemonListener, pokemon: PokemonEntry){
+        fun bind(clickListener: PokemonListener, pokemon: Pokemon){
             binding.pokemon = pokemon
             binding.clickListener = clickListener
             binding.executePendingBindings()
@@ -26,13 +26,13 @@ class PokemonListAdapter(private val clickListener: PokemonListener) :ListAdapte
 
     override fun onBindViewHolder(holder: PokemonListViewHolder, position: Int) = holder.bind( clickListener, getItem(position) )
 
-    companion object DiffCallBack: DiffUtil.ItemCallback<PokemonEntry>(){
-        override fun areItemsTheSame(oldItem: PokemonEntry, newItem: PokemonEntry) =  oldItem.id == newItem.id
-        override fun areContentsTheSame(oldItem: PokemonEntry, newItem: PokemonEntry) = oldItem == newItem
+    companion object DiffCallBack: DiffUtil.ItemCallback<Pokemon>(){
+        override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon) =  oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon) = oldItem == newItem
     }
 
-    class PokemonListener(val clickListener: (pokemon: PokemonEntry) -> Unit){
-        fun onClick(pokemon: PokemonEntry) = clickListener(pokemon)
+    class PokemonListener(val clickListener: (pokemon: Pokemon) -> Unit){
+        fun onClick(pokemon: Pokemon) = clickListener(pokemon)
     }
 
 }

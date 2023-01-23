@@ -6,82 +6,58 @@
     <data>
         <variable
             name="pokemon"
-            type="com.example.pokeapp.models.PokemonEntry" />
+            type="com.example.pokeapp.models.pokemonresponses.Pokemon" />
         <variable
             name="clickListener"
             type="com.example.pokeapp.adapters.PokemonListAdapter.PokemonListener" />
 
     </data>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="15dp"
-        android:shadowColor="?attr/colorOnSecondary"
         android:layout_margin="10dp"
+        android:shadowColor="?attr/colorOnSecondary"
         android:onClick="@{() -> clickListener.onClick(pokemon)}"
+        app:pokemon_type_color="@{pokemon.types[0].type.name}"
         android:elevation="10dp"
-        tools:targetApi="lollipop"
-        android:hapticFeedbackEnabled="true"
-        android:clickable="true"
-        android:focusable="true">
+        android:hapticFeedbackEnabled="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/pokeListItem"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <ImageView
+                android:id="@+id/pokeImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:contentDescription="@string/pokemon"
+                android:layout_margin="30dp"
+                android:cropToPadding="true"
+                android:scaleType="center"
+                android:layout_gravity="center"
+                app:img_url="@{pokemon.sprites.other.official_artwork.front_default}"
+                app:layout_constraintBottom_toTopOf="@+id/tvPokemonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/tvPokemonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
             android:text="@{pokemon.name}"
-            android:textSize="24sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintStart_toEndOf="@+id/pokeImage"
-            app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-            android:id="@+id/pokeImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:cropToPadding="true"
-            android:scaleType="centerCrop"
-            app:img_url="@{pokemon.imgUrl}"
-            android:contentDescription="@string/pokemon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{pokemon.type}"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
             android:layout_margin="10dp"
-            android:background="@drawable/circular_background"
-            android:contentDescription="@string/pokemon"
-            android:src="@drawable/pokeball_animation"
+            android:layout_gravity="bottom|center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pokeImage"
+            tools:text="@tools:sample/full_names" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </layout>
