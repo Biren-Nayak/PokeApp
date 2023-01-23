@@ -17,6 +17,11 @@ object Constants {
     const val SET_EXP="set_exp"
 
 
+    const val ITEMS_PER_PAGE = 18
+    const val STARTING_KEY = 1
+
+    const val limit = 20
+
     const val MAX_EXP = 1000
     const val MAX_STAT = 300
     const val OFFSET = "offset"
@@ -95,4 +100,7 @@ object Constants {
         R.color.normal,
         R.color.water
     )
+
+
+
 }

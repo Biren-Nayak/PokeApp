@@ -42,8 +42,21 @@ class PokeDetailFragment: Fragment() {
         binding.materialCardView.setCardBackgroundColor(color)
         requireActivity().window?.statusBarColor = color
         requireActivity().actionBar?.setBackgroundDrawable(color.toDrawable())
-        (activity as AppCompatActivity).supportActionBar?.setBackgroundDrawable(color.toDrawable())
+        (activity as AppCompatActivity).supportActionBar?.apply{
+            title = viewModel.selectedPokemon.value?.name?.replaceFirstChar { it.titlecase() }
 
+            setBackgroundDrawable(color.toDrawable())
+        }
+
+        binding.apply {
+            txtAbout.setTextColor(color)
+            txtBaseStat.setTextColor(color)
+            txtHp.setTextColor(color)
+            txtAttack.setTextColor(color)
+            txtDefense.setTextColor(color)
+            txtSpeed.setTextColor(color)
+            txtExperience.setTextColor(color)
+        }
     }
 }
 

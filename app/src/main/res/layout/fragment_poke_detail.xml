@@ -33,10 +33,10 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginTop="32dp"
                 android:alpha="0.3"
-                tools:visibility="gone"
                 android:contentDescription="@string/pokemon"
                 android:src="@drawable/pokeball_slant"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                tools:visibility="gone" />
 
 
             <ImageView
@@ -83,11 +83,11 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@null"
             app:layout_constraintEnd_toStartOf="@+id/type_second"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_value"
-            android:contentDescription="@null"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
             app:pokemon_type_image="@{viewModel.selectedPokemon.types[0].type.name}"
             tools:src="@tools:sample/backgrounds/scenic" />
 
@@ -97,81 +97,103 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:contentDescription="@null"
             app:layout_constraintStart_toEndOf="@+id/first_type"
-            app:layout_constraintTop_toBottomOf="@+id/txt_name_value"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
             app:pokemon_type_image_second="@{viewModel.selectedPokemon.types}"
             tools:src="@tools:sample/backgrounds/scenic"
             tools:text="@tools:sample/last_names" />
 
         <TextView
-            android:id="@+id/txt_name_value"
+            android:id="@+id/txt_base_stat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.selectedPokemon.name}"
-            android:textAppearance="?textAppearanceHeadline4"
+            android:layout_marginTop="30dp"
+            android:text="@string/base_stats"
+            android:textStyle="bold"
+            android:textAppearance="?textAppearanceHeadline5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-            tools:text="@tools:sample/first_names" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_weight" />
+
+        <TextView
+            android:id="@+id/txt_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about"
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:textAppearance="?textAppearanceHeadline5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/first_type" />
 
         <TextView
             android:id="@+id/txt_height_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textAppearance="?textAppearanceHeadline6"
             app:height="@{viewModel.selectedPokemon.height}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/txt_weight_value"
-            app:layout_constraintTop_toBottomOf="@+id/first_type"
-            tools:text="@tools:sample/date/hhmm" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_about"
+            tools:text="@tools:sample/us_zipcodes" />
 
         <TextView
             android:id="@+id/txt_weight_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:textAppearance="?textAppearanceHeadline6"
             app:layout_constraintEnd_toStartOf="@+id/txt_height_value"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/first_type"
+            app:layout_constraintTop_toBottomOf="@+id/txt_about"
             app:weight="@{viewModel.selectedPokemon.weight}"
-            tools:text="@tools:sample/date/hhmm" />
+            tools:text="@tools:sample/us_zipcodes" />
 
 
         <TextView
             android:id="@+id/txt_hp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/hp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintBottom_toTopOf="@+id/txt_attack"
+            app:layout_constraintEnd_toStartOf="@+id/txt_hp_value"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_weight" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_base_stat" />
 
         <TextView
             android:id="@+id/txt_attack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/attack"
-            app:layout_constraintBottom_toTopOf="@+id/defense"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            app:layout_constraintBottom_toTopOf="@+id/txt_defense"
+            app:layout_constraintEnd_toStartOf="@+id/txt_attack_value"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_hp" />
 
         <TextView
-            android:id="@+id/defense"
+            android:id="@+id/txt_defense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/defense"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintBottom_toTopOf="@+id/txt_speed"
+            app:layout_constraintEnd_toStartOf="@+id/txt_defense_value"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_attack" />
 
@@ -179,33 +201,105 @@
             android:id="@+id/txt_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/speed"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintBottom_toTopOf="@+id/txt_experience"
+            app:layout_constraintEnd_toStartOf="@+id/txt_speed_value"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defense" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_defense" />
 
         <TextView
             android:id="@+id/txt_experience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             android:text="@string/experience"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_experience_value"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txt_speed" />
 
+        <TextView
+            android:id="@+id/txt_hp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@{String.valueOf(viewModel.selectedPokemon.stats[0].base_stat)}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_attack_value"
+            app:layout_constraintEnd_toStartOf="@+id/hp_progressBar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_hp"
+            app:layout_constraintTop_toBottomOf="@+id/txt_base_stat"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <TextView
+            android:id="@+id/txt_attack_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@{String.valueOf(viewModel.selectedPokemon.stats[1].base_stat)}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_defense_value"
+            app:layout_constraintEnd_toStartOf="@+id/atk_progressBar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_attack"
+            app:layout_constraintTop_toBottomOf="@+id/txt_hp_value"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <TextView
+            android:id="@+id/txt_defense_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@{String.valueOf(viewModel.selectedPokemon.stats[2].base_stat)}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_speed_value"
+            app:layout_constraintEnd_toStartOf="@+id/def_progressBar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_defense"
+            app:layout_constraintTop_toBottomOf="@+id/txt_attack_value"
+            tools:text="@tools:sample/us_zipcodes" />
+
+
+        <TextView
+            android:id="@+id/txt_speed_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@{String.valueOf(viewModel.selectedPokemon.stats[5].base_stat)}"
+            app:layout_constraintBottom_toTopOf="@+id/txt_experience_value"
+            app:layout_constraintEnd_toStartOf="@+id/spd_progressBar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_speed"
+            app:layout_constraintTop_toBottomOf="@+id/txt_defense_value"
+            tools:text="@tools:sample/us_zipcodes" />
+
+        <TextView
+            android:id="@+id/txt_experience_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:text="@{String.valueOf(viewModel.selectedPokemon.base_experience)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/exp_progressBar"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_experience"
+            app:layout_constraintTop_toBottomOf="@+id/txt_speed_value"
+            tools:text="@tools:sample/us_zipcodes" />
 
         <ProgressBar
             android:id="@+id/hp_progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="20dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toTopOf="@+id/atk_progressBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_hp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_weight"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_hp_value"
+            app:layout_constraintTop_toBottomOf="@+id/txt_base_stat"
             app:pokemon_type_tint="@{viewModel.selectedPokemon.types[0].type.name}"
             app:set_stat="@{viewModel.selectedPokemon.stats[0].base_stat}" />
 
@@ -214,10 +308,11 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="20dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toTopOf="@+id/def_progressBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_attack"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_attack_value"
             app:layout_constraintTop_toBottomOf="@+id/hp_progressBar"
             app:pokemon_type_tint="@{viewModel.selectedPokemon.types[0].type.name}"
             app:set_stat="@{viewModel.selectedPokemon.stats[1].base_stat}" />
@@ -227,10 +322,11 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="20dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toTopOf="@+id/spd_progressBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/defense"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_defense_value"
             app:layout_constraintTop_toBottomOf="@+id/atk_progressBar"
             app:pokemon_type_tint="@{viewModel.selectedPokemon.types[0].type.name}"
             app:set_stat="@{viewModel.selectedPokemon.stats[2].base_stat}" />
@@ -240,10 +336,11 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="20dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toTopOf="@+id/exp_progressBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/txt_speed"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_speed_value"
             app:layout_constraintTop_toBottomOf="@+id/def_progressBar"
             app:pokemon_type_tint="@{viewModel.selectedPokemon.types[0].type.name}"
             app:set_stat="@{viewModel.selectedPokemon.stats[5].base_stat}" />
@@ -253,11 +350,11 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="20dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.478"
-            app:layout_constraintStart_toEndOf="@+id/txt_experience"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/txt_experience_value"
             app:layout_constraintTop_toBottomOf="@+id/spd_progressBar"
             app:pokemon_type_tint="@{viewModel.selectedPokemon.types[0].type.name}"
             app:set_exp="@{viewModel.selectedPokemon.base_experience}" />

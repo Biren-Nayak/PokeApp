@@ -1,9 +1,11 @@
 package com.example.pokeapp.adapters
 
+import android.os.Build
 import android.view.View.*
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
@@ -39,6 +41,7 @@ object BindingAdapters {
     fun bindImage(imageView: ImageView, imgUrl: String?) = imgUrl?.let { url ->
         Glide.with(imageView.context)
             .load(url)
+            .thumbnail(.5f)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .transition(DrawableTransitionOptions.withCrossFade(250))
             .into(imageView)
@@ -46,6 +49,7 @@ object BindingAdapters {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
     @BindingAdapter(POKEMON_TYPE_IMAGE)
     fun setPokemonImageByType(imageView: ImageView, name: String) {
@@ -54,15 +58,18 @@ object BindingAdapters {
             pokemonTypeImagesList[index]
         )
         imageView.imageTintList = ContextCompat.getColorStateList(imageView.context, pokemonTypeColorsList[index])
+        imageView.tooltipText = name
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
     @BindingAdapter(POKEMON_TYPE_IMAGE_2)
     fun setPokemonImageByType(imageView: ImageView, types: List<Type>) = if (types.size > 1) {
         val index = pokemonTypesList.indexOf(types[1].type.name)
         imageView.setImageResource(pokemonTypeImagesList[index])
         imageView.imageTintList = ContextCompat.getColorStateList(imageView.context, pokemonTypeColorsList[index])
+        imageView.tooltipText = types[1].type.name
     }
         else
             imageView.visibility = GONE
@@ -85,16 +92,24 @@ object BindingAdapters {
         }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
     @BindingAdapter(SET_STAT)
     fun setPokemonStat(progress: ProgressBar, stat: Int) =
-        progress.setProgress(stat).also { progress.max = MAX_STAT }
+        progress.setProgress(stat).also {
+            progress.max = MAX_STAT
+            progress.tooltipText = "$stat / $MAX_STAT"
+        }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
     @BindingAdapter(SET_EXP)
     fun setPokemonExp(progress: ProgressBar, exp: Int) =
-        progress.setProgress(exp).also { progress.max = MAX_EXP }
+        progress.setProgress(exp).also {
+            progress.max = MAX_EXP
+            progress.tooltipText = "$exp / $MAX_EXP"
+        }
 
 
     @JvmStatic

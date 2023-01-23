@@ -1,6 +1,7 @@
 package com.example.pokeapp.di
 
 import com.example.pokeapp.network.PokeAPI
+import com.example.pokeapp.pagination.PokePagingSource
 import com.example.pokeapp.repository.PokeRepository
 import com.example.pokeapp.util.Constants
 import dagger.Module
@@ -18,6 +19,10 @@ object AppModule {
     @Provides
     @Singleton
     fun myRepoImpl(api: PokeAPI) = PokeRepository(api)
+
+    @Provides
+    @Singleton
+    fun myPagingSourceImpl(repository: PokeRepository) = PokePagingSource(repository)
 
     @Provides
     @Singleton
