@@ -7,10 +7,11 @@
 - [x] Minimum SDK level 21
 - [x] [Kotlin](https://kotlinlang.org/) based, Coroutines + Flow for asynchronous.</li>
 - [x] MVVM Architecture View - DataBinding - ViewModel - Model
-- [x] [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
-- [x] [Moshi](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
+- [x] [Retrofit2](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
+- [x] [Gson](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
 - [x] [Glide](https://github.com/bumptech/glide) - Used for loading images.
 - [x] [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView
+- [x] [DaggerHlit](https://dagger.dev/hilt) - Used for injecting compile-time dependencies.
 
 ## 🌏 Open API
 Pokedex using the [PokeAPI](https://pokeapi.co) for constructing RESTful API.
